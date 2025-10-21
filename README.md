@@ -18,6 +18,10 @@ pip install -r requirements.txt
 
 # **accesing it**
 cd /my-psiturk-experiment/psiturk-example
+
+
 source ../venv/bin/activate
+
+
 psiturk server on
 
