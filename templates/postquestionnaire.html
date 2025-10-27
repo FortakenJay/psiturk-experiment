@@ -1,79 +1,31 @@
-<div id="container-questionnaire">
-    <h1>Task Complete</h1>
+<h2>Post-quiz survey</h2>
 
-    <hr />
+<!-- Example Engagement questions -->
+<label>Engagement: I felt interested while interacting with the robot.</label>
+<select id="engagement_q1">
+  <option value="1">1 - Strongly disagree</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 - Strongly agree</option>
+</select>
 
-    <p>You are finished!  Thank you for your contributions to science. You will be eligible for full payment once you answer the following questions.</p>
+<label>Engagement: I was motivated to continue the quiz.</label>
+<select id="engagement_q2"> ... same options ... </select>
 
-    <div class="instructions well">
+<!-- Usability -->
+<label>Usability: The robot's interface was easy to use.</label>
+<select id="usability_q1"> ... </select>
 
-        <form id="postquiz" action="debrief" method="post">
+<label>Adaptiveness: The robot responded to my needs (if adaptive).</label>
+<select id="adaptiveness_q1"> ... </select>
 
+<!-- Overall satisfaction -->
+<label>Overall satisfaction</label>
+<select id="satisfaction_overall">
+  <option value="1">1 - Very dissatisfied</option>
+  ...
+  <option value="5">5 - Very satisfied</option>
+</select>
 
-            <!-- beginning of a question -->
-            <div class="row question">
-                <div class="col-md-8">
-                    On a scale of 1-10 (where 10 is the most engaged), please rate how <b>ENGAGING</b> you found the learning task:
-                </div>
-                <div class="col-md-4">
-                    <select id="engagement" name="engagement">
-                        <option value="10">10 - Very engaging</option>
-                        <option value="9">9</option>
-                        <option value="8">8</option>
-                        <option value="7">7</option>
-                        <option value="6">6</option>
-                        <option value="5" SELECTED>5 - Moderately</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                        <option value="1">1</option>
-                        <option value="0">0 - Not engaged</option>
-                    </select>
-                </div>
-            </div>
-            <!-- end of a question -->
-
-
-            <!-- beginning of a question -->
-            <div class="row question">
-                <div class="col-md-8">
-                    On a scale of 1-10 (where 10 is the most difficult), please rate how <b>DIFFICULT</b> you found the learning task:
-                </div>
-                <div class="col-md-4">
-                    <select id="difficulty" name="difficulty">
-                        <option value="10">10 - Very difficult</option>
-                        <option value="9">9</option>
-                        <option value="8">8</option>
-                        <option value="7">7</option>
-                        <option value="6">6</option>
-                        <option value="5" SELECTED>5 - Moderately difficult</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                        <option value="1">1</option>
-                        <option value="0">0 - Not difficult at all</option>
-                    </select>
-                </div>
-            </div>
-            <!-- end of a question -->
-        </form>
-    </div>
-
-    <hr />
-
-    <div class="instructionsnav">
-        <div class="row">
-            <div class="col-xs-2">
-            </div>
-            <div class="col-xs-7">
-            </div>
-            <div class="col-xs-3">
-                <button type="button" id="next" value="next" class="btn btn-primary btn-lg continue">
-                    Continue <span class="glyphicon glyphicon-arrow-right"></span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-
-</div>
+<button id="next">Submit survey and finish</button>

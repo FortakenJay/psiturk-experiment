@@ -258,12 +258,12 @@ port = 22363
 experiment_code_version = 1.0.0
 
 # The number of possible treatments. Used for random balanced assignment.
-;num_conds = 1
+num_conds = 2
 
 # The number of possible counterbalance conditions. Used for random balanced assignment.
 # If you don't know what this is, it is safe to leave it at a default of 1 and
 # to only modify `num_conds` above.
-;num_counters = 1
+num_counters = 1
 
 ;contact_email_on_error = youremail@gmail.com
 
