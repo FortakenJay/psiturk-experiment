@@ -63,15 +63,17 @@ var StroopExperiment = function() {
 
 	// Stimuli for a basic Stroop experiment
 	var stims = [
-			["SHIP", "red", "unrelated"],
-			["MONKEY", "green", "unrelated"],
-			["ZAMBONI", "blue", "unrelated"],
-			["RED", "red", "congruent"],
-			["GREEN", "green", "congruent"],
-			["BLUE", "blue", "congruent"],
-			["GREEN", "red", "incongruent"],
-			["BLUE", "green", "incongruent"],
-			["RED", "blue", "incongruent"]
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"],
+			["matheq1", "matheq1", "matheq1"]
+
 		];
 
 	stims = _.shuffle(stims);
