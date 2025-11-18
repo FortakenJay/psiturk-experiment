@@ -1,0 +1,56 @@
+<div id="container-questionnaire">
+    <h1>About You</h1>
+    <hr />
+    
+    <div class="instructions well">
+        <p>Please answer the following questions before beginning the experiment.</p>
+
+        <form id="demographics-form">
+            <div class="form-group">
+                <label for="age">Age (18-80):</label>
+                <input type="number" class="form-control" id="age" min="18" max="80" style="width: 100px;" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" style="width: 200px;" required>
+                    <option value="">Select one...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Non-binary">Non-binary</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="psiturk_exp">Have you used PsiTurk before?</label>
+                <select class="form-control" id="psiturk_exp" style="width: 200px;" required>
+                    <option value="">Select one...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="robot_exp">Have you worked with robots before?</label>
+                <select class="form-control" id="robot_exp" style="width: 200px;" required>
+                    <option value="">Select one...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+
+    <div class="instructionsnav">
+        <div class="row">
+            <div class="col-xs-12" style="text-align: center;">
+                <button type="button" id="submit-demographics" class="btn btn-primary btn-lg">
+                    Continue <span class="glyphicon glyphicon-arrow-right"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
