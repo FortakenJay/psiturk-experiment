@@ -4,18 +4,27 @@
 <label>Engagement: I felt interested while interacting with the robot.</label>
 <select id="engagement_q1">
   <option value="1">1 - Strongly disagree</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
+  <option value="2">2 - Disagree</option>
+  <option value="3">3 - Neutral</option>
+  <option value="4">4 - Agree</option>
   <option value="5">5 - Strongly agree</option>
 </select>
 
 <label>Engagement: I was motivated to continue the quiz.</label>
-<select id="engagement_q2"> ... same options ... </select>
+<select id="engagement_q2">
+  <option value="1">1 - Strongly disagree</option>
+  <option value="2">2 - Disagree</option>
+  <option value="3">3 - Neutral</option>
+  <option value="4">4 - Agree</option>
+  <option value="5">5 - Strongly agree</option>
+</select>
 
 <!-- Usability -->
 <label>Usability: The robot's interface was easy to use.</label>
-<select id="usability_q1"> ... </select>
+<select id="usability_q1"> 
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
 
 <label>Adaptiveness: The robot responded to my needs (if adaptive).</label>
 <select id="adaptiveness_q1"> ... </select>
@@ -35,4 +44,4 @@
 </div>
 <br/>
 
-<button id="next">Submit survey and finish</button>
+<button type="button" id="next" class="btn btn-primary btn-lg">Submit survey and finish</button>
