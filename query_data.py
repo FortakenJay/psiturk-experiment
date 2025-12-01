@@ -168,88 +168,113 @@ def export_to_csv():
     # Create trial data CSV
     trial_filename = f"trial_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     quest_filename = f"questionnaire_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    demo_filename = f"demographics_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     
     with open(trial_filename, 'w', newline='') as trial_file:
         trial_writer = csv.writer(trial_file)
         trial_writer.writerow(['participant_id', 'condition', 'trial_index', 'question_id',
                               'question_text', 'correct_answer', 'response', 'correct',
-                              'difficulty', 'rt', 'timestamp'])
+                              'difficulty', 'rt', 'feedback_type', 'timestamp'])
         
         with open(quest_filename, 'w', newline='') as quest_file:
             quest_writer = csv.writer(quest_file)
-            quest_writer.writerow(['participant_id', 'condition', 'age', 'gender',
-                                  'psiturk_exp', 'robot_exp', 'engagement_q1', 'engagement_q2',
+            quest_writer.writerow(['participant_id', 'condition', 'engagement_q1', 'engagement_q2',
                                   'usability_q1', 'usability_q2', 'adaptiveness_q1',
                                   'adaptiveness_q2', 'satisfaction_overall', 'general_comments'])
             
-            for p in participants:
-                participant_id = p[0]
-                datastring_raw = p[17]  # datastring column (now at index 17, not 16)
+            with open(demo_filename, 'w', newline='') as demo_file:
+                demo_writer = csv.writer(demo_file)
+                demo_writer.writerow(['participant_id', 'condition', 'age', 'gender',
+                                      'psiturk_exp', 'robot_exp', 'browser', 'platform',
+                                      'started', 'completed', 'bonus'])
                 
-                if not datastring_raw:
-                    continue
-                
-                try:
-                    data = json.loads(datastring_raw)
-                    condition = None
-                    demographics = data.get('questiondata', {})
-                    questionnaire = {}
+                for p in participants:
+                    participant_id = p[0]
+                    datastring_raw = p[17]  # datastring column
+                    browser = p[5]
+                    platform = p[6]
+                    beginhit = p[11]
+                    endhit = p[13]
+                    bonus = p[14]
                     
-                    # Extract trial data
-                    for record in data.get('data', []):
-                        trial = record.get('trialdata', {})
-                        phase = trial.get('phase', '')
+                    if not datastring_raw:
+                        continue
+                    
+                    try:
+                        data = json.loads(datastring_raw)
+                        condition = None
+                        demographics = data.get('questiondata', {})
+                        questionnaire = {}
                         
-                        if phase == 'ASSIGNMENT':
-                            condition = trial.get('condition', 'unknown')
+                        # Extract trial data
+                        for record in data.get('data', []):
+                            trial = record.get('trialdata', {})
+                            phase = trial.get('phase', '')
+                            
+                            if phase == 'ASSIGNMENT':
+                                condition = trial.get('condition', 'unknown')
+                            
+                            elif phase == 'TEST' and 'question_id' in trial:
+                                trial_writer.writerow([
+                                    participant_id,
+                                    condition or 'unknown',
+                                    trial.get('trial_index', ''),
+                                    trial.get('question_id', ''),
+                                    trial.get('question_text', ''),
+                                    trial.get('correct_answer', ''),
+                                    trial.get('response', ''),
+                                    trial.get('correct', ''),
+                                    trial.get('difficulty', ''),
+                                    trial.get('rt', ''),
+                                    trial.get('feedback_type', ''),
+                                    record.get('dateTime', '')
+                                ])
+                            
+                            elif phase == 'postquestionnaire':
+                                survey_str = trial.get('survey', '{}')
+                                try:
+                                    questionnaire = json.loads(survey_str)
+                                except:
+                                    pass
                         
-                        elif phase == 'TEST' and 'question_id' in trial:
-                            trial_writer.writerow([
+                        # Write demographics row
+                        demo_writer.writerow([
+                            participant_id,
+                            condition or 'unknown',
+                            demographics.get('age', ''),
+                            demographics.get('gender', ''),
+                            demographics.get('psiturk_exp', ''),
+                            demographics.get('robot_exp', ''),
+                            browser,
+                            platform,
+                            beginhit,
+                            endhit,
+                            bonus
+                        ])
+                        
+                        # Write questionnaire row (only if data exists)
+                        if questionnaire:
+                            quest_writer.writerow([
                                 participant_id,
                                 condition or 'unknown',
-                                trial.get('trial_index', ''),
-                                trial.get('question_id', ''),
-                                trial.get('question_text', ''),
-                                trial.get('correct_answer', ''),
-                                trial.get('response', ''),
-                                trial.get('correct', ''),
-                                trial.get('difficulty', ''),
-                                trial.get('rt', ''),
-                                record.get('dateTime', '')
+                                questionnaire.get('engagement_q1', ''),
+                                questionnaire.get('engagement_q2', ''),
+                                questionnaire.get('usability_q1', ''),
+                                questionnaire.get('usability_q2', ''),
+                                questionnaire.get('adaptiveness_q1', ''),
+                                questionnaire.get('adaptiveness_q2', ''),
+                                questionnaire.get('satisfaction_overall', ''),
+                                demographics.get('general_comments', '')
                             ])
                         
-                        elif phase == 'postquestionnaire':
-                            survey_str = trial.get('survey', '{}')
-                            try:
-                                questionnaire = json.loads(survey_str)
-                            except:
-                                pass
-                    
-                    # Write questionnaire row
-                    quest_writer.writerow([
-                        participant_id,
-                        condition or 'unknown',
-                        demographics.get('age', ''),
-                        demographics.get('gender', ''),
-                        demographics.get('psiturk_exp', ''),
-                        demographics.get('robot_exp', ''),
-                        questionnaire.get('engagement_q1', ''),
-                        questionnaire.get('engagement_q2', ''),
-                        questionnaire.get('usability_q1', ''),
-                        questionnaire.get('usability_q2', ''),
-                        questionnaire.get('adaptiveness_q1', ''),
-                        questionnaire.get('adaptiveness_q2', ''),
-                        questionnaire.get('satisfaction_overall', ''),
-                        demographics.get('general_comments', '')
-                    ])
-                    
-                except Exception as e:
-                    print(f"Error processing participant {participant_id}: {e}")
-                    continue
+                    except Exception as e:
+                        print(f"Error processing participant {participant_id}: {e}")
+                        continue
     
     print(f"\n✅ Data exported successfully!")
     print(f"   Trial data: {trial_filename}")
-    print(f"   Questionnaire data: {quest_filename}\n")
+    print(f"   Questionnaire data: {quest_filename}")
+    print(f"   Demographics data: {demo_filename}\n")
 
 def export_to_json():
     """Export all data to JSON"""

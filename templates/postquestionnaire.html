@@ -1,15 +1,17 @@
 <div id="container-questionnaire">
-    <h2>Post-Experiment Survey</h2>
-    <p>Please answer the following questions about your experience with the robot tutor.</p>
+    <h2>📝 Post-Experiment Survey</h2>
+    <p style="font-size: 16px; margin-bottom: 30px;">Please answer the following questions about your experience with the robot tutor. All questions are required.</p>
     <hr />
 
-    <div class="well" style="max-width: 800px; margin: 20px auto;">
+    <div class="well" style="max-width: 900px; margin: 20px auto; padding: 30px; background-color: #ffffff; border: 2px solid #ddd;">
+        
+        <h4 style="color: #007bff; margin-bottom: 20px;">Engagement</h4>
         
         <!-- Engagement Questions -->
-        <div class="form-group">
-            <label for="engagement_q1"><strong>1. I felt interested while interacting with the robot.</strong></label>
-            <select id="engagement_q1" class="form-control" required>
-                <option value="">Select one...</option>
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label for="engagement_q1" style="font-size: 16px;"><strong>1. I felt interested while interacting with the robot.</strong></label>
+            <select id="engagement_q1" class="form-control" required style="font-size: 15px; padding: 10px;">
+                <option value="">-- Please select an option --</option>
                 <option value="1">1 - Strongly disagree</option>
                 <option value="2">2 - Disagree</option>
                 <option value="3">3 - Neutral</option>
@@ -18,10 +20,10 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="engagement_q2"><strong>2. I was motivated to continue the quiz.</strong></label>
-            <select id="engagement_q2" class="form-control" required>
-                <option value="">Select one...</option>
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="engagement_q2" style="font-size: 16px;"><strong>2. I was motivated to continue the quiz.</strong></label>
+            <select id="engagement_q2" class="form-control" required style="font-size: 15px; padding: 10px;">
+                <option value="">-- Please select an option --</option>
                 <option value="1">1 - Strongly disagree</option>
                 <option value="2">2 - Disagree</option>
                 <option value="3">3 - Neutral</option>
@@ -29,12 +31,15 @@
                 <option value="5">5 - Strongly agree</option>
             </select>
         </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Usability</h4>
 
         <!-- Usability Questions -->
-        <div class="form-group">
-            <label for="usability_q1"><strong>3. The robot's interface was easy to use.</strong></label>
-            <select id="usability_q1" class="form-control" required>
-                <option value="">Select one...</option>
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label for="usability_q1" style="font-size: 16px;"><strong>3. The robot's interface was easy to use.</strong></label>
+            <select id="usability_q1" class="form-control" required style="font-size: 15px; padding: 10px;">
+                <option value="">-- Please select an option --</option>
                 <option value="1">1 - Strongly disagree</option>
                 <option value="2">2 - Disagree</option>
                 <option value="3">3 - Neutral</option>
@@ -43,10 +48,10 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="usability_q2"><strong>4. The robot's feedback was helpful.</strong></label>
-            <select id="usability_q2" class="form-control" required>
-                <option value="">Select one...</option>
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="usability_q2" style="font-size: 16px;"><strong>4. The robot's feedback was helpful.</strong></label>
+            <select id="usability_q2" class="form-control" required style="font-size: 15px; padding: 10px;">
+                <option value="">-- Please select an option --</option>
                 <option value="1">1 - Strongly disagree</option>
                 <option value="2">2 - Disagree</option>
                 <option value="3">3 - Neutral</option>
@@ -54,12 +59,15 @@
                 <option value="5">5 - Strongly agree</option>
             </select>
         </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Robot Adaptiveness</h4>
 
         <!-- Adaptiveness Questions -->
-        <div class="form-group">
-            <label for="adaptiveness_q1"><strong>5. The robot responded well to my needs.</strong></label>
-            <select id="adaptiveness_q1" class="form-control" required>
-                <option value="">Select one...</option>
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label for="adaptiveness_q1" style="font-size: 16px;"><strong>5. The robot responded well to my needs.</strong></label>
+            <select id="adaptiveness_q1" class="form-control" required style="font-size: 15px; padding: 10px;">
+                <option value="">-- Please select an option --</option>
                 <option value="1">1 - Strongly disagree</option>
                 <option value="2">2 - Disagree</option>
                 <option value="3">3 - Neutral</option>
@@ -68,10 +76,10 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="adaptiveness_q2"><strong>6. The robot adjusted its teaching to help me learn.</strong></label>
-            <select id="adaptiveness_q2" class="form-control" required>
-                <option value="">Select one...</option>
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="adaptiveness_q2" style="font-size: 16px;"><strong>6. The robot adjusted its teaching to help me learn.</strong></label>
+            <select id="adaptiveness_q2" class="form-control" required style="font-size: 15px; padding: 10px;">
+                <option value="">-- Please select an option --</option>
                 <option value="1">1 - Strongly disagree</option>
                 <option value="2">2 - Disagree</option>
                 <option value="3">3 - Neutral</option>
@@ -79,12 +87,15 @@
                 <option value="5">5 - Strongly agree</option>
             </select>
         </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Overall Satisfaction</h4>
 
         <!-- Overall Satisfaction -->
-        <div class="form-group">
-            <label for="satisfaction_overall"><strong>7. Overall, how satisfied were you with the robot tutor?</strong></label>
-            <select id="satisfaction_overall" class="form-control" required>
-                <option value="">Select one...</option>
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="satisfaction_overall" style="font-size: 16px;"><strong>7. Overall, how satisfied were you with the robot tutor?</strong></label>
+            <select id="satisfaction_overall" class="form-control" required style="font-size: 15px; padding: 10px;">
+                <option value="">-- Please select an option --</option>
                 <option value="1">1 - Very dissatisfied</option>
                 <option value="2">2 - Dissatisfied</option>
                 <option value="3">3 - Neutral</option>
@@ -93,17 +104,21 @@
             </select>
         </div>
 
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Additional Feedback</h4>
+
         <!-- Comments -->
-        <div class="form-group">
-            <label for="general_comments"><strong>8. Do you have any other comments or feedback about the experiment?</strong></label>
-            <textarea id="general_comments" class="form-control" rows="4" placeholder="Enter your comments here (optional)..."></textarea>
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="general_comments" style="font-size: 16px;"><strong>8. Do you have any other comments or feedback about the experiment?</strong> <em>(Optional)</em></label>
+            <textarea id="general_comments" class="form-control" rows="5" placeholder="Enter your comments here..." style="font-size: 15px; padding: 10px;"></textarea>
         </div>
 
-        <hr />
+        <hr style="margin: 30px 0;">
 
-        <div style="text-align: center; margin-top: 30px;">
-            <button type="button" id="next" class="btn btn-success btn-lg">
-                <span class="glyphicon glyphicon-ok"></span> Submit Survey and Finish
+        <div style="text-align: center; margin-top: 40px;">
+            <p id="error-message" style="color: red; font-weight: bold; display: none; margin-bottom: 15px;">⚠️ Please answer all required questions before submitting.</p>
+            <button type="button" id="next" class="btn btn-success btn-lg" style="font-size: 20px; padding: 15px 40px;">
+                <span class="glyphicon glyphicon-ok"></span> Submit Survey and Complete Study
             </button>
         </div>
     </div>

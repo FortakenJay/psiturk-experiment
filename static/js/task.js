@@ -111,8 +111,13 @@ const CONDITIONS = {
 
 // If mycondition is supplied as 0/1 or 'adaptive'/'static', normalize:
 function resolveCondition(raw) {
-    if (!raw) {
-        // fallback: random
+    if (!raw || raw === null || raw === undefined) {
+        // Use counterbalance for true 50/50 distribution
+        // counterbalance is set by PsiTurk and alternates 0/1
+        if (typeof mycounterbalance !== 'undefined' && mycounterbalance !== null) {
+            return (mycounterbalance % 2 === 0) ? CONDITIONS.ADAPTIVE : CONDITIONS.STATIC;
+        }
+        // fallback: random (only if counterbalance not available)
         return Math.random() < 0.5 ? CONDITIONS.ADAPTIVE : CONDITIONS.STATIC;
     }
     if (typeof raw === 'string') {
@@ -129,52 +134,122 @@ function resolveCondition(raw) {
 
 var assignedCondition = resolveCondition(mycondition);
 console.log("!!! CURRENT CONDITION IS: " + assignedCondition + " !!!");
+console.log("Counterbalance value: " + mycounterbalance);
 
 // Quiz questions array (easy and difficult). Customize/extend.
-// Quiz questions: Basic Calc I (Derivatives) & Calc II (Integrals)
-// Updated to be more accessible and easier to understand
+// Calculus 1-2 Questions: Derivatives and Integrals (Easy to Medium)
 var questions = [
+    // EASY DERIVATIVES
     {
         id: 'q1', 
-        question: 'What is the derivative of 3x? (Enter just the number)', 
-        answer: '3', 
-        difficulty: 'easy', 
-        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DerivativeIntro.aspx'
-    },
-    {
-        id: 'q2', 
-        question: 'What is the derivative of x^2? (Use format: 2x)', 
-        answer: '2x', 
+        question: 'What is the derivative of x^3? (Format: 3x^2)', 
+        answer: '3x^2', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/PowerRule.aspx'
     },
     {
+        id: 'q2', 
+        question: 'What is the derivative of 5x? (Just enter the number)', 
+        answer: '5', 
+        difficulty: 'easy', 
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DerivativeIntro.aspx'
+    },
+    {
         id: 'q3', 
-        question: 'What is the derivative of sin(x)? (Use format: cos(x))', 
-        answer: 'cos(x)', 
+        question: 'What is the derivative of cos(x)? (Format: -sin(x))', 
+        answer: '-sin(x)', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffTrigFcns.aspx'
     },
     {
         id: 'q4', 
-        question: 'What is the integral of 2 dx? (Format: 2x, omit +C)', 
-        answer: '2x', 
+        question: 'What is the derivative of e^x? (Format: e^x)', 
+        answer: 'e^x', 
+        difficulty: 'easy', 
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffExpLogFcns.aspx'
+    },
+    
+    // EASY TO MEDIUM INTEGRALS
+    {
+        id: 'q5', 
+        question: 'What is the integral of 3x^2 dx? (Format: x^3, omit +C)', 
+        answer: 'x^3', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IndefiniteIntegrals.aspx'
     },
     {
-        id: 'q5', 
-        question: 'What is the integral of x dx? (Format: x^2/2, omit +C)', 
-        answer: 'x^2/2', 
-        difficulty: 'medium', 
+        id: 'q6', 
+        question: 'What is the integral of sin(x) dx? (Format: -cos(x), omit +C)', 
+        answer: '-cos(x)', 
+        difficulty: 'easy', 
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsOfTrig.aspx'
+    },
+    {
+        id: 'q7',
+        question: 'What is the integral of 1/x dx? (Format: ln(x), omit +C)',
+        answer: 'ln(x)',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsWithExpFcns.aspx'
+    },
+    
+    // MEDIUM DERIVATIVES
+    {
+        id: 'q8',
+        question: 'What is the derivative of x^2*sin(x) using product rule? (Format: 2x*sin(x)+x^2*cos(x))',
+        answer: '2x*sin(x)+x^2*cos(x)',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/ProductQuotientRule.aspx'
+    },
+    {
+        id: 'q9',
+        question: 'What is the derivative of ln(x^2)? (Format: 2/x)',
+        answer: '2/x',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffExpLogFcns.aspx'
+    },
+    {
+        id: 'q10',
+        question: 'What is the derivative of tan(x)? (Format: sec(x)^2)',
+        answer: 'sec(x)^2',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffTrigFcns.aspx'
+    },
+    
+    // MEDIUM INTEGRALS
+    {
+        id: 'q11',
+        question: 'What is the integral of e^x dx? (Format: e^x, omit +C)',
+        answer: 'e^x',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsWithExpFcns.aspx'
+    },
+    {
+        id: 'q12',
+        question: 'What is the integral of sec(x)^2 dx? (Format: tan(x), omit +C)',
+        answer: 'tan(x)',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsOfTrig.aspx'
+    },
+    {
+        id: 'q13',
+        question: 'What is the derivative of sqrt(x)? (Format: 1/(2*sqrt(x)))',
+        answer: '1/(2*sqrt(x))',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/PowerRule.aspx'
+    },
+    {
+        id: 'q14',
+        question: 'What is the integral of x^3 dx? (Format: x^4/4, omit +C)',
+        answer: 'x^4/4',
+        difficulty: 'easy',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IndefiniteIntegrals.aspx'
     },
     {
-        id: 'q6', 
-        question: 'What is the integral of cos(x) dx? (Format: sin(x), omit +C)', 
-        answer: 'sin(x)', 
-        difficulty: 'medium', 
-        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsOfTrig.aspx'
+        id: 'q15',
+        question: 'What is the derivative of 1/x? (Format: -1/x^2)',
+        answer: '-1/x^2',
+        difficulty: 'medium',
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/PowerRule.aspx'
     }
 ];
 
@@ -193,24 +268,26 @@ const ADAPTIVE_THRESHOLD = 0.33;    // if proportion correct <= threshold, robot
 var QuizExperiment = function() {
     // state
     var trialIndex = 0;
+    var listening = false;
+    var wordon = null;
+    var runningCorrectness = []; // keep last ADAPTIVE_WINDOW correctness flags
+    var trialStartTime = null;
+    
     // --- TIMER LOGIC START ---
     var totalTime = 300; // 300 seconds (5 minutes)
-    // Display the timer on the screen
-    d3.select("body").append("div")
-        .attr("id", "time-container")
-        .style({
-            "position": "fixed", 
-            "top": "10px", 
-            "right": "10px", 
-            "font-size": "20px", 
-            "font-weight": "bold",
-            "color": "red",
-            "background": "white",
-            "padding": "5px",
-            "border": "1px solid red"
-        });
+    var timerInterval;
+    
+    // Prepare page first
+    psiTurk.showPage('stage.html');
+    
+    // Remove ALL existing timers (both in body and container)
+    $("#time-container").remove();
+    $("body > #time-container").remove();
+    
+    // Display the timer INSIDE the container at the top
+    $("#container-exp").prepend('<div id="time-container" style="text-align: center; font-size: 28px; font-weight: bold; color: #fff; background: #d9534f; padding: 20px; border: 3px solid #c9302c; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">⏱️ Time Left: 5:00</div>');
 
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         totalTime--;
         
         var minutes = Math.floor(totalTime / 60);
@@ -218,22 +295,24 @@ var QuizExperiment = function() {
         // Pad seconds with leading zero
         seconds = seconds < 10 ? '0' + seconds : seconds;
         
-        $("#time-container").text("Time Left: " + minutes + ":" + seconds);
+        $("#time-container").html("⏱️ Time Left: " + minutes + ":" + seconds);
+        
+        // Change color when time is running out
+        if (totalTime <= 60) {
+            $("#time-container").css({
+                'background': '#a94442',
+                'animation': 'pulse 1s infinite'
+            });
+        }
 
         if (totalTime <= 0) {
             clearInterval(timerInterval);
+            $("#time-container").remove(); // Remove timer when done
             alert("Time is up! Proceeding to the next section.");
             finish(); // Auto-advance
         }
     }, 1000);
     // --- TIMER LOGIC END ---
-    var listening = false;
-    var wordon = null;
-    var runningCorrectness = []; // keep last ADAPTIVE_WINDOW correctness flags
-    var trialStartTime = null;
-
-    // Prepare page
-    psiTurk.showPage('stage.html');
 
     // Build initial UI (assumes #stim, #robotFeedback, #controls exist in stage.html)
     function renderQuestion(q) {
@@ -242,27 +321,35 @@ var QuizExperiment = function() {
         d3.select("#robotFeedback").html('');
         d3.select("#controls").html('');
 
-        // Show robot image and question
-        d3.select("#stim")
+        // Show robot image and question - enhanced styling
+        var robotContainer = d3.select("#stim")
             .append("div")
             .attr("id", "robot-container")
             .style("text-align", "center")
-            .style("margin", "20px 0")
-            .append("img")
+            .style("margin", "20px auto")
+            .style("padding", "20px")
+            .style("background-color", "#f8f9fa")
+            .style("border-radius", "15px")
+            .style("max-width", "700px");
+        
+        robotContainer.append("img")
             .attr("src", "/static/images/pnw.png")
             .attr("alt", "Robot Tutor")
-            .style("max-width", "200px")
-            .style("border", "2px solid #ccc")
-            .style("border-radius", "8px")
-            .style("padding", "5px");
+            .style("max-width", "250px")
+            .style("border", "3px solid #007bff")
+            .style("border-radius", "12px")
+            .style("padding", "10px")
+            .style("background-color", "white")
+            .style("box-shadow", "0 4px 8px rgba(0,0,0,0.1)")
+            .style("margin-bottom", "15px");
 
-        d3.select("#stim")
-            .append("div")
+        robotContainer.append("div")
             .attr("id","question-text")
-            .style("font-size","24px")
+            .style("font-size","22px")
             .style("margin","20px")
-            .style("font-weight", "500")
-            .text("Robot asks: " + q.question);
+            .style("font-weight", "600")
+            .style("color", "#333")
+            .html("🤖 <strong>Robot asks:</strong> " + q.question);
 
         // input field
         d3.select("#controls")
@@ -330,40 +417,38 @@ var QuizExperiment = function() {
 
         // default feedback for correct / incorrect
         if (correct) {
-            showRobotText("Nice! That's correct. Keep going!");
+            showRobotText("Great job! That's correct. Keep it up!");
             psiTurk.recordTrialData({phase: "FEEDBACK", feedback_type: "adaptive_positive", question_id: q.id, condition: assignedCondition});
             // small delay then next
-            setTimeout(nextTrial, 900);
+            setTimeout(nextTrial, 1200);
             return;
         } else {
-            // if recent performance low, be encouraging and offer to review
+            // Adaptive offers encouragement and optional review
+            var feedbackText = "Not quite - the answer is <strong>" + q.answer + "</strong>. ";
             if (runningCorrectness.length === ADAPTIVE_WINDOW && proportionCorrect <= ADAPTIVE_THRESHOLD) {
-                // Encouraging + offer review
-                showRobotText("Don't worry — you'll get it next time. Would you like to review the topic?");
-                showReviewLink(q.topic_link, /*offerReview=*/ true);
+                feedbackText += "Let's review this topic if you need help!";
                 psiTurk.recordTrialData({phase: "FEEDBACK", feedback_type: "adaptive_encourage_offer_review", question_id: q.id, condition: assignedCondition});
             } else {
-                // Gentle corrective: show correct answer + offer to repeat question
-                showRobotText("That's not quite right. Want to try another similar question or review the topic?");
-                // show two buttons: Try another similar / Review the topic
-                showRetryOrReviewButtons(q.topic_link);
-                psiTurk.recordTrialData({phase: "FEEDBACK", feedback_type: "adaptive_suggest_retry", question_id: q.id, condition: assignedCondition});
+                feedbackText += "Want to review?";
+                psiTurk.recordTrialData({phase: "FEEDBACK", feedback_type: "adaptive_review_offer", question_id: q.id, condition: assignedCondition});
             }
+            showRobotText(feedbackText);
+            showSimpleReviewOption(q.topic_link);
         }
     }
 
     // Static robot feedback
     function staticFeedback(q, correct) {
         if (correct) {
-            showRobotText("Correct.");
+            showRobotText("Correct. Next question.");
             psiTurk.recordTrialData({phase: "FEEDBACK", feedback_type: "static_positive", question_id: q.id, condition: assignedCondition});
-            setTimeout(nextTrial, 700);
+            setTimeout(nextTrial, 1000);
             return;
         } else {
-            // Static: tell them wrong and give link only (no encouragement)
-            showRobotText("Wrong. Here's a link to review the topic.");
-            showReviewLink(q.topic_link, /*offerReview=*/ false);
-            psiTurk.recordTrialData({phase: "FEEDBACK", feedback_type: "static_negative_with_link", question_id: q.id, condition: assignedCondition});
+            // Static: just say wrong and move on - no review, no encouragement
+            showRobotText("Wrong. Next question.");
+            psiTurk.recordTrialData({phase: "FEEDBACK", feedback_type: "static_negative", question_id: q.id, condition: assignedCondition});
+            setTimeout(nextTrial, 1000);
         }
     }
 
@@ -373,67 +458,50 @@ var QuizExperiment = function() {
         d3.select("#robotFeedback")
             .append("div")
             .attr("class","robot-bubble")
-            .style("border","1px solid #ddd")
-            .style("padding","10px")
-            .style("margin","10px")
-            .style("border-radius","8px")
-            .text(text);
+            .style("border","2px solid #4CAF50")
+            .style("padding","15px")
+            .style("margin","20px auto")
+            .style("max-width","600px")
+            .style("border-radius","12px")
+            .style("background-color","#f9f9f9")
+            .style("font-size","18px")
+            .html(text);
     }
 
-    // Show a single review link (and track clicks)
-    function showReviewLink(url, offerReview) {
+    // Simplified review option with better button placement
+    function showSimpleReviewOption(url) {
         var container = d3.select("#robotFeedback");
-        container.append("div").style("marginTop","10px")
-            .append("a")
+        
+        // Button container - centered with both buttons side by side
+        var btnContainer = container.append("div")
+            .style("text-align", "center")
+            .style("margin-top", "20px");
+        
+        // Continue button (primary action - larger and green)
+        btnContainer.append("button")
+            .attr("id","continue-btn")
+            .attr("class", "btn btn-success btn-lg")
+            .style("margin", "5px")
+            .style("font-size", "18px")
+            .style("padding", "12px 30px")
+            .html("Continue →")
+            .on("click", function() {
+                psiTurk.recordTrialData({phase: "INTERACTION", event: "clicked_continue", question_id: questions[trialIndex].id, condition: assignedCondition});
+                nextTrial();
+            });
+        
+        // Review link button (secondary - smaller)
+        btnContainer.append("a")
             .attr("href", url)
             .attr("target", "_blank")
             .attr("id","review-link")
             .attr("class", "btn btn-info")
-            .text("📚 Open Topic Review");
-
-        // track clicks
-        $("#review-link").on("click", function() {
-            psiTurk.recordTrialData({phase: "INTERACTION", event: "clicked_review_link", question_id: questions[trialIndex].id, condition: assignedCondition});
-        });
-
-        // Next button to continue - centered and prominent
-        container.append("div")
-            .style("marginTop","20px")
-            .style("text-align", "center")
-            .append("button")
-            .attr("id","continue-btn")
-            .attr("class", "btn btn-success btn-lg")
-            .text("Continue to Next Question →")
-            .on("click", function() {
-                psiTurk.recordTrialData({phase: "INTERACTION", event: "clicked_continue_after_review_offer", question_id: questions[trialIndex].id, condition: assignedCondition});
-                nextTrial();
-            });
-    }
-
-    // Show choice to retry a similar question or review
-    function showRetryOrReviewButtons(reviewUrl) {
-        var container = d3.select("#robotFeedback");
-        var btnDiv = container.append("div")
-            .style("marginTop","20px")
-            .style("text-align", "center");
-        
-        btnDiv.append("button")
-            .attr("id","retry-btn")
-            .attr("class", "btn btn-success btn-lg")
-            .text("Continue to Next Question →")
-            .on("click", function() {
-                psiTurk.recordTrialData({phase: "INTERACTION", event: "retry_clicked", question_id: questions[trialIndex].id, condition: assignedCondition});
-                nextTrial();
-            });
-        
-        btnDiv.append("button")
-            .attr("id","review-btn")
-            .attr("class", "btn btn-info btn-lg")
-            .style("margin-left","15px")
+            .style("margin", "5px")
+            .style("font-size", "14px")
+            .style("padding", "8px 20px")
             .text("📚 Review Topic")
             .on("click", function() {
-                psiTurk.recordTrialData({phase: "INTERACTION", event: "review_clicked", question_id: questions[trialIndex].id, condition: assignedCondition});
-                window.open(reviewUrl, '_blank');
+                psiTurk.recordTrialData({phase: "INTERACTION", event: "clicked_review_link", question_id: questions[trialIndex].id, condition: assignedCondition});
             });
     }
 
@@ -459,8 +527,11 @@ var QuizExperiment = function() {
     }
 
     function finish() {
-        // save the last trial as ended
+        // Clear the timer interval and remove timer display
         clearInterval(timerInterval);
+        $("#time-container").remove();
+        
+        // save the last trial as ended
         psiTurk.recordTrialData({phase: "TEST", status: "finished", condition: assignedCondition});
 
         // Move to questionnaire view
@@ -479,6 +550,9 @@ var Questionnaire = function() {
     var error_message = "<h1>Oops!</h1><p>Something went wrong submitting your HIT. This might happen if you lose your internet connection. Press the button to resubmit.</p><button id='resubmit'>Resubmit</button>";
 
     record_responses = function() {
+        // Hide any previous error messages
+        $("#error-message").hide();
+        
         // Validate all required fields are filled
         var allFilled = true;
         var requiredFields = ['engagement_q1', 'engagement_q2', 'usability_q1', 'usability_q2', 'adaptiveness_q1', 'adaptiveness_q2', 'satisfaction_overall'];
@@ -488,15 +562,18 @@ var Questionnaire = function() {
             if (!el || !el.value || el.value === "") {
                 allFilled = false;
                 if (el) {
-                    el.style.border = "2px solid red";
+                    el.style.border = "3px solid red";
+                    el.style.backgroundColor = "#ffe6e6";
                 }
             } else if (el) {
                 el.style.border = "";
+                el.style.backgroundColor = "";
             }
         });
         
         if (!allFilled) {
-            alert("Please answer all required questions before submitting.");
+            $("#error-message").show();
+            $('html, body').animate({ scrollTop: 0 }, 500);
             return false;
         }
         
@@ -520,13 +597,11 @@ var Questionnaire = function() {
             condition: assignedCondition
         });
 
-        // Also record any long textarea answers
-        $('textarea').each( function(i, val) {
-            psiTurk.recordUnstructuredData(this.id, this.value);
-        });
-        $('select').each( function(i, val) {
-            psiTurk.recordUnstructuredData(this.id, this.value);        
-        });
+        // Also record any long textarea answers (including optional comments)
+        var comments = $('#general_comments').val();
+        if (comments && comments.trim() !== "") {
+            psiTurk.recordUnstructuredData('general_comments', comments);
+        }
         
         return true;
     };
@@ -556,18 +631,33 @@ var Questionnaire = function() {
     psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'begin', 'condition': assignedCondition});
 
     $("#next").click(function () {
+        console.log("Submit button clicked"); // Debug log
+        
         // Validate responses first
         if (!record_responses()) {
+            console.log("Validation failed");
             return; // Don't proceed if validation fails
         }
         
+        console.log("Validation passed, saving data...");
+        
+        // Disable button and show loading state
+        $("#next").prop('disabled', true).html('<span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Submitting...');
+        
         psiTurk.saveData({
             success: function(){
+                console.log("Data saved successfully");
                 psiTurk.computeBonus('compute_bonus', function() { 
+                    console.log("Bonus computed, completing HIT");
                     psiTurk.completeHIT();
                 }); 
             }, 
-            error: prompt_resubmit});
+            error: function() {
+                console.log("Error saving data");
+                $("#next").prop('disabled', false).html('<span class="glyphicon glyphicon-ok"></span> Submit Survey and Complete Study');
+                prompt_resubmit();
+            }
+        });
     });
 
 };
