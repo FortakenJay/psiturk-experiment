@@ -91,7 +91,7 @@ def compute_bonus():
         for record in user_data['data']:  # for line in data file
             trial = record['trialdata']
             if trial['phase'] == 'TEST':
-                if trial['hit'] == True:
+                if 'correct' in trial and trial['correct'] == True:
                     bonus += 0.02
         user.bonus = bonus
         db_session.add(user)
@@ -100,3 +100,110 @@ def compute_bonus():
         return jsonify(**resp)
     except:
         abort(404)  # again, bad to display HTML, but...
+
+
+# ----------------------------------------------
+# export data to CSV (separate trial data from questionnaire)
+# ----------------------------------------------
+import csv
+from io import StringIO
+
+@custom_code.route('/export_data')
+def export_data():
+    """Export trial data and questionnaire data as separate CSV files"""
+    participants = Participant.query.all()
+    
+    # Create trial data CSV
+    trial_output = StringIO()
+    trial_writer = csv.writer(trial_output)
+    trial_writer.writerow(['participant_id', 'condition', 'trial_index', 'question_id', 
+                          'question_text', 'correct_answer', 'response', 'correct', 
+                          'difficulty', 'rt', 'timestamp'])
+    
+    # Create questionnaire data CSV
+    quest_output = StringIO()
+    quest_writer = csv.writer(quest_output)
+    quest_writer.writerow(['participant_id', 'condition', 'age', 'gender', 'psiturk_exp', 
+                          'robot_exp', 'engagement_q1', 'engagement_q2', 'usability_q1', 
+                          'usability_q2', 'adaptiveness_q1', 'adaptiveness_q2', 
+                          'satisfaction_overall', 'general_comments'])
+    
+    for participant in participants:
+        try:
+            user_data = loads(participant.datastring)
+            participant_id = participant.uniqueid
+            condition = None
+            demographics = {}
+            questionnaire = {}
+            
+            # Parse data
+            for record in user_data.get('data', []):
+                trial = record.get('trialdata', {})
+                phase = trial.get('phase', '')
+                
+                # Get condition assignment
+                if phase == 'ASSIGNMENT':
+                    condition = trial.get('condition', 'unknown')
+                
+                # Get trial data
+                elif phase == 'TEST' and 'question_id' in trial:
+                    trial_writer.writerow([
+                        participant_id,
+                        condition or 'unknown',
+                        trial.get('trial_index', ''),
+                        trial.get('question_id', ''),
+                        trial.get('question_text', ''),
+                        trial.get('correct_answer', ''),
+                        trial.get('response', ''),
+                        trial.get('correct', ''),
+                        trial.get('difficulty', ''),
+                        trial.get('rt', ''),
+                        record.get('dateTime', '')
+                    ])
+            
+            # Get demographics from questiondata
+            for item in user_data.get('questiondata', {}).items():
+                key, value = item
+                demographics[key] = value
+            
+            # Get questionnaire from eventdata (if stored there) or questiondata
+            for record in user_data.get('data', []):
+                trial = record.get('trialdata', {})
+                if trial.get('phase') == 'postquestionnaire':
+                    survey_str = trial.get('survey', '{}')
+                    try:
+                        questionnaire = loads(survey_str)
+                    except:
+                        pass
+            
+            # Write questionnaire row
+            quest_writer.writerow([
+                participant_id,
+                condition or 'unknown',
+                demographics.get('age', ''),
+                demographics.get('gender', ''),
+                demographics.get('psiturk_exp', ''),
+                demographics.get('robot_exp', ''),
+                questionnaire.get('engagement_q1', ''),
+                questionnaire.get('engagement_q2', ''),
+                questionnaire.get('usability_q1', ''),
+                questionnaire.get('usability_q2', ''),
+                questionnaire.get('adaptiveness_q1', ''),
+                questionnaire.get('adaptiveness_q2', ''),
+                questionnaire.get('satisfaction_overall', ''),
+                demographics.get('general_comments', '')
+            ])
+            
+        except Exception as e:
+            current_app.logger.error(f"Error processing participant {participant.uniqueid}: {str(e)}")
+            continue
+    
+    # Return both CSVs as a downloadable response
+    response_text = "=== TRIAL DATA ===\n\n" + trial_output.getvalue()
+    response_text += "\n\n=== QUESTIONNAIRE DATA ===\n\n" + quest_output.getvalue()
+    
+    return Response(
+        response_text,
+        mimetype="text/plain",
+        headers={"Content-disposition": "attachment; filename=experiment_data.txt"})
+

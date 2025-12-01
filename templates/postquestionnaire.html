@@ -1,50 +1,110 @@
-<h2>Post-quiz survey</h2>
+<div id="container-questionnaire">
+    <h2>Post-Experiment Survey</h2>
+    <p>Please answer the following questions about your experience with the robot tutor.</p>
+    <hr />
 
-<!-- Example Engagement questions -->
-<label>Engagement: I felt interested while interacting with the robot.</label>
-<select id="engagement_q1">
-  <option value="1">1 - Strongly disagree</option>
-  <option value="2">2 - Disagree</option>
-  <option value="3">3 - Neutral</option>
-  <option value="4">4 - Agree</option>
-  <option value="5">5 - Strongly agree</option>
-</select>
+    <div class="well" style="max-width: 800px; margin: 20px auto;">
+        
+        <!-- Engagement Questions -->
+        <div class="form-group">
+            <label for="engagement_q1"><strong>1. I felt interested while interacting with the robot.</strong></label>
+            <select id="engagement_q1" class="form-control" required>
+                <option value="">Select one...</option>
+                <option value="1">1 - Strongly disagree</option>
+                <option value="2">2 - Disagree</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Agree</option>
+                <option value="5">5 - Strongly agree</option>
+            </select>
+        </div>
 
-<label>Engagement: I was motivated to continue the quiz.</label>
-<select id="engagement_q2">
-  <option value="1">1 - Strongly disagree</option>
-  <option value="2">2 - Disagree</option>
-  <option value="3">3 - Neutral</option>
-  <option value="4">4 - Agree</option>
-  <option value="5">5 - Strongly agree</option>
-</select>
+        <div class="form-group">
+            <label for="engagement_q2"><strong>2. I was motivated to continue the quiz.</strong></label>
+            <select id="engagement_q2" class="form-control" required>
+                <option value="">Select one...</option>
+                <option value="1">1 - Strongly disagree</option>
+                <option value="2">2 - Disagree</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Agree</option>
+                <option value="5">5 - Strongly agree</option>
+            </select>
+        </div>
 
-<!-- Usability -->
-<label>Usability: The robot's interface was easy to use.</label>
-<select id="usability_q1"> 
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
-</select>
+        <!-- Usability Questions -->
+        <div class="form-group">
+            <label for="usability_q1"><strong>3. The robot's interface was easy to use.</strong></label>
+            <select id="usability_q1" class="form-control" required>
+                <option value="">Select one...</option>
+                <option value="1">1 - Strongly disagree</option>
+                <option value="2">2 - Disagree</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Agree</option>
+                <option value="5">5 - Strongly agree</option>
+            </select>
+        </div>
 
-<label>Adaptiveness: The robot responded to my needs (if adaptive).</label>
-<select id="adaptiveness_q1"> </select>
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
-</select>
+        <div class="form-group">
+            <label for="usability_q2"><strong>4. The robot's feedback was helpful.</strong></label>
+            <select id="usability_q2" class="form-control" required>
+                <option value="">Select one...</option>
+                <option value="1">1 - Strongly disagree</option>
+                <option value="2">2 - Disagree</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Agree</option>
+                <option value="5">5 - Strongly agree</option>
+            </select>
+        </div>
 
-<!-- Overall satisfaction -->
-<label>Overall satisfaction</label>
-<select id="satisfaction_overall">
-  <option value="1">1 - Very dissatisfied</option>
-  <option value="2">2 - Dissatisfied</option>
-  <option value="3">3 - Neutral</option>
-  <option value="4">4 - Satisfied</option>
-  <option value="5">5 - Very satisfied</option>
-</select>
-<div class="form-group">
-    <label for="general_comments">Do you have any other comments or feedback about the experiment?</label>
-    <textarea id="general_comments" class="form-control" rows="4" placeholder="Enter your comments here..."></textarea>
+        <!-- Adaptiveness Questions -->
+        <div class="form-group">
+            <label for="adaptiveness_q1"><strong>5. The robot responded well to my needs.</strong></label>
+            <select id="adaptiveness_q1" class="form-control" required>
+                <option value="">Select one...</option>
+                <option value="1">1 - Strongly disagree</option>
+                <option value="2">2 - Disagree</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Agree</option>
+                <option value="5">5 - Strongly agree</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="adaptiveness_q2"><strong>6. The robot adjusted its teaching to help me learn.</strong></label>
+            <select id="adaptiveness_q2" class="form-control" required>
+                <option value="">Select one...</option>
+                <option value="1">1 - Strongly disagree</option>
+                <option value="2">2 - Disagree</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Agree</option>
+                <option value="5">5 - Strongly agree</option>
+            </select>
+        </div>
+
+        <!-- Overall Satisfaction -->
+        <div class="form-group">
+            <label for="satisfaction_overall"><strong>7. Overall, how satisfied were you with the robot tutor?</strong></label>
+            <select id="satisfaction_overall" class="form-control" required>
+                <option value="">Select one...</option>
+                <option value="1">1 - Very dissatisfied</option>
+                <option value="2">2 - Dissatisfied</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Satisfied</option>
+                <option value="5">5 - Very satisfied</option>
+            </select>
+        </div>
+
+        <!-- Comments -->
+        <div class="form-group">
+            <label for="general_comments"><strong>8. Do you have any other comments or feedback about the experiment?</strong></label>
+            <textarea id="general_comments" class="form-control" rows="4" placeholder="Enter your comments here (optional)..."></textarea>
+        </div>
+
+        <hr />
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="button" id="next" class="btn btn-success btn-lg">
+                <span class="glyphicon glyphicon-ok"></span> Submit Survey and Finish
+            </button>
+        </div>
+    </div>
 </div>
-<br/>
-
-<button type="button" id="next" class="btn btn-primary btn-lg">Submit survey and finish</button>

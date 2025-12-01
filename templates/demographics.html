@@ -3,41 +3,45 @@
     <hr />
     
     <div class="instructions well">
-        <p>Please answer the following questions before beginning the experiment.</p>
+        <p>Please answer <strong>all</strong> questions before continuing to the experiment.</p>
 
         <form id="demographics-form">
             <div class="form-group">
-                <label for="age">Age (18-80):</label>
-                <input type="number" class="form-control" id="age" min="18" max="80" style="width: 100px;" required>
+                <label for="age">Age (18-80): <span style="color: red;">*</span></label>
+                <input type="number" class="form-control" id="age" min="18" max="80" step="1" style="width: 150px;" required placeholder="Enter your age">
+                <small id="age-error" style="color: red; display: none;">Please enter a valid age between 18 and 80.</small>
             </div>
 
             <div class="form-group">
-                <label for="gender">Gender:</label>
-                <select class="form-control" id="gender" style="width: 200px;" required>
+                <label for="gender">Gender: <span style="color: red;">*</span></label>
+                <select class="form-control" id="gender" style="width: 250px;" required>
                     <option value="">Select one...</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Non-binary">Non-binary</option>
                     <option value="Prefer not to say">Prefer not to say</option>
                 </select>
+                <small id="gender-error" style="color: red; display: none;">Please select your gender.</small>
             </div>
 
             <div class="form-group">
-                <label for="psiturk_exp">Have you used PsiTurk before?</label>
-                <select class="form-control" id="psiturk_exp" style="width: 200px;" required>
+                <label for="psiturk_exp">Have you used PsiTurk before? <span style="color: red;">*</span></label>
+                <select class="form-control" id="psiturk_exp" style="width: 250px;" required>
                     <option value="">Select one...</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <small id="psiturk-error" style="color: red; display: none;">Please answer this question.</small>
             </div>
 
             <div class="form-group">
-                <label for="robot_exp">Have you worked with robots before?</label>
-                <select class="form-control" id="robot_exp" style="width: 200px;" required>
+                <label for="robot_exp">Have you worked with robots before? <span style="color: red;">*</span></label>
+                <select class="form-control" id="robot_exp" style="width: 250px;" required>
                     <option value="">Select one...</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <small id="robot-error" style="color: red; display: none;">Please answer this question.</small>
             </div>
         </form>
     </div>

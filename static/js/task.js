@@ -40,11 +40,52 @@ const init = (async () => {
         psiTurk.showPage('demographics.html');
 
         $("#submit-demographics").on("click", function() {
+            // Validate all fields are filled
+            var age = $('#age').val();
+            var gender = $('#gender').val();
+            var psiturk_exp = $('#psiturk_exp').val();
+            var robot_exp = $('#robot_exp').val();
+            
+            // Hide all error messages first
+            $('#age-error, #gender-error, #psiturk-error, #robot-error').hide();
+            
+            var isValid = true;
+            
+            // Validate age (must be a number between 18-80)
+            if (!age || isNaN(age) || age < 18 || age > 80) {
+                $('#age-error').show();
+                isValid = false;
+            }
+            
+            // Validate gender
+            if (!gender) {
+                $('#gender-error').show();
+                isValid = false;
+            }
+            
+            // Validate psiturk experience
+            if (!psiturk_exp) {
+                $('#psiturk-error').show();
+                isValid = false;
+            }
+            
+            // Validate robot experience
+            if (!robot_exp) {
+                $('#robot-error').show();
+                isValid = false;
+            }
+            
+            // If validation fails, show alert and return
+            if (!isValid) {
+                alert("Please fill out all required fields before continuing.");
+                return;
+            }
+
             // 1. Capture Data
-            psiTurk.recordUnstructuredData('age', $('#age').val());
-            psiTurk.recordUnstructuredData('gender', $('#gender').val());
-            psiTurk.recordUnstructuredData('psiturk_exp', $('#psiturk_exp').val());
-            psiTurk.recordUnstructuredData('robot_exp', $('#robot_exp').val());
+            psiTurk.recordUnstructuredData('age', age);
+            psiTurk.recordUnstructuredData('gender', gender);
+            psiTurk.recordUnstructuredData('psiturk_exp', psiturk_exp);
+            psiTurk.recordUnstructuredData('robot_exp', robot_exp);
 
             // 2. Save
             psiTurk.saveData();
@@ -91,47 +132,48 @@ console.log("!!! CURRENT CONDITION IS: " + assignedCondition + " !!!");
 
 // Quiz questions array (easy and difficult). Customize/extend.
 // Quiz questions: Basic Calc I (Derivatives) & Calc II (Integrals)
+// Updated to be more accessible and easier to understand
 var questions = [
     {
         id: 'q1', 
-        question: 'What is the derivative of 5x? (Enter a number)', 
-        answer: '5', 
+        question: 'What is the derivative of 3x? (Enter just the number)', 
+        answer: '3', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DerivativeIntro.aspx'
     },
     {
         id: 'q2', 
-        question: 'What is the derivative of sin(x)?', 
+        question: 'What is the derivative of x^2? (Use format: 2x)', 
+        answer: '2x', 
+        difficulty: 'easy', 
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/PowerRule.aspx'
+    },
+    {
+        id: 'q3', 
+        question: 'What is the derivative of sin(x)? (Use format: cos(x))', 
         answer: 'cos(x)', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffTrigFcns.aspx'
     },
     {
-        id: 'q3', 
-        question: 'What is the derivative of e^x?', 
-        answer: 'e^x', 
-        difficulty: 'easy', 
-        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffExpLogFcns.aspx'
-    },
-    {
         id: 'q4', 
-        question: 'Evaluate the definite integral from 0 to 2 of: 3x^2 dx. (Enter a number)', 
-        answer: '8', 
-        difficulty: 'difficult', 
-        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DefnIntegrals.aspx'
+        question: 'What is the integral of 2 dx? (Format: 2x, omit +C)', 
+        answer: '2x', 
+        difficulty: 'easy', 
+        topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IndefiniteIntegrals.aspx'
     },
     {
         id: 'q5', 
-        question: 'What is the integral of 1/x dx? (Format: ln(x))', 
-        answer: 'ln(x)', 
-        difficulty: 'difficult', 
+        question: 'What is the integral of x dx? (Format: x^2/2, omit +C)', 
+        answer: 'x^2/2', 
+        difficulty: 'medium', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IndefiniteIntegrals.aspx'
     },
     {
         id: 'q6', 
-        question: 'What is the integral of cos(x) dx? (Omit +C)', 
+        question: 'What is the integral of cos(x) dx? (Format: sin(x), omit +C)', 
         answer: 'sin(x)', 
-        difficulty: 'difficult', 
+        difficulty: 'medium', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsOfTrig.aspx'
     }
 ];
@@ -200,12 +242,26 @@ var QuizExperiment = function() {
         d3.select("#robotFeedback").html('');
         d3.select("#controls").html('');
 
-        // Show robot (simple text bubble) and question
+        // Show robot image and question
+        d3.select("#stim")
+            .append("div")
+            .attr("id", "robot-container")
+            .style("text-align", "center")
+            .style("margin", "20px 0")
+            .append("img")
+            .attr("src", "/static/images/pnw.png")
+            .attr("alt", "Robot Tutor")
+            .style("max-width", "200px")
+            .style("border", "2px solid #ccc")
+            .style("border-radius", "8px")
+            .style("padding", "5px");
+
         d3.select("#stim")
             .append("div")
             .attr("id","question-text")
-            .style("font-size","28px")
+            .style("font-size","24px")
             .style("margin","20px")
+            .style("font-weight", "500")
             .text("Robot asks: " + q.question);
 
         // input field
@@ -215,14 +271,16 @@ var QuizExperiment = function() {
             .attr("id","response-input")
             .attr("placeholder","Type your answer here")
             .style("font-size","18px")
-            .style("padding","8px");
+            .style("padding","10px")
+            .style("width", "300px")
+            .style("margin-right", "10px");
 
         // submit button
         d3.select("#controls")
             .append("button")
             .attr("id","submit-answer")
-            .text("Submit")
-            .style("margin-left","10px")
+            .attr("class", "btn btn-primary btn-lg")
+            .text("Submit Answer")
             .on("click", handleSubmit);
 
         // set focus and start timer
@@ -330,18 +388,22 @@ var QuizExperiment = function() {
             .attr("href", url)
             .attr("target", "_blank")
             .attr("id","review-link")
-            .text("Open topic review");
+            .attr("class", "btn btn-info")
+            .text("📚 Open Topic Review");
 
         // track clicks
         $("#review-link").on("click", function() {
             psiTurk.recordTrialData({phase: "INTERACTION", event: "clicked_review_link", question_id: questions[trialIndex].id, condition: assignedCondition});
         });
 
-        // Next button to continue
-        container.append("div").style("marginTop","8px")
+        // Next button to continue - centered and prominent
+        container.append("div")
+            .style("marginTop","20px")
+            .style("text-align", "center")
             .append("button")
             .attr("id","continue-btn")
-            .text("Continue")
+            .attr("class", "btn btn-success btn-lg")
+            .text("Continue to Next Question →")
             .on("click", function() {
                 psiTurk.recordTrialData({phase: "INTERACTION", event: "clicked_continue_after_review_offer", question_id: questions[trialIndex].id, condition: assignedCondition});
                 nextTrial();
@@ -351,19 +413,24 @@ var QuizExperiment = function() {
     // Show choice to retry a similar question or review
     function showRetryOrReviewButtons(reviewUrl) {
         var container = d3.select("#robotFeedback");
-        var btnDiv = container.append("div").style("marginTop","8px");
+        var btnDiv = container.append("div")
+            .style("marginTop","20px")
+            .style("text-align", "center");
+        
         btnDiv.append("button")
             .attr("id","retry-btn")
-            .text("Try similar question")
+            .attr("class", "btn btn-success btn-lg")
+            .text("Continue to Next Question →")
             .on("click", function() {
-                // Option: we could push a similar difficulty question; for now simply continue (we already shuffled questions)
                 psiTurk.recordTrialData({phase: "INTERACTION", event: "retry_clicked", question_id: questions[trialIndex].id, condition: assignedCondition});
                 nextTrial();
             });
+        
         btnDiv.append("button")
             .attr("id","review-btn")
-            .style("margin-left","8px")
-            .text("Review topic")
+            .attr("class", "btn btn-info btn-lg")
+            .style("margin-left","15px")
+            .text("📚 Review Topic")
             .on("click", function() {
                 psiTurk.recordTrialData({phase: "INTERACTION", event: "review_clicked", question_id: questions[trialIndex].id, condition: assignedCondition});
                 window.open(reviewUrl, '_blank');
@@ -412,12 +479,33 @@ var Questionnaire = function() {
     var error_message = "<h1>Oops!</h1><p>Something went wrong submitting your HIT. This might happen if you lose your internet connection. Press the button to resubmit.</p><button id='resubmit'>Resubmit</button>";
 
     record_responses = function() {
+        // Validate all required fields are filled
+        var allFilled = true;
+        var requiredFields = ['engagement_q1', 'engagement_q2', 'usability_q1', 'usability_q2', 'adaptiveness_q1', 'adaptiveness_q2', 'satisfaction_overall'];
+        
+        requiredFields.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (!el || !el.value || el.value === "") {
+                allFilled = false;
+                if (el) {
+                    el.style.border = "2px solid red";
+                }
+            } else if (el) {
+                el.style.border = "";
+            }
+        });
+        
+        if (!allFilled) {
+            alert("Please answer all required questions before submitting.");
+            return false;
+        }
+        
         psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'submit'});
 
         // record structured survey responses: assume inputs have specific ids
         var surveyData = {};
         // 4 scales (example: engagement, usability, perceived adaptiveness, cognitive load) + overall satisfaction
-        ['engagement_q1','engagement_q2','usability_q1','usability_q2','adaptiveness_q1','adaptiveness_q2','satisfaction_overall'].forEach(function(id) {
+        requiredFields.forEach(function(id) {
             var el = document.getElementById(id);
             var val = el ? el.value : "";
             surveyData[id] = val;
@@ -439,6 +527,8 @@ var Questionnaire = function() {
         $('select').each( function(i, val) {
             psiTurk.recordUnstructuredData(this.id, this.value);        
         });
+        
+        return true;
     };
 
     prompt_resubmit = function() {
@@ -466,7 +556,11 @@ var Questionnaire = function() {
     psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'begin', 'condition': assignedCondition});
 
     $("#next").click(function () {
-        record_responses();
+        // Validate responses first
+        if (!record_responses()) {
+            return; // Don't proceed if validation fails
+        }
+        
         psiTurk.saveData({
             success: function(){
                 psiTurk.computeBonus('compute_bonus', function() { 
