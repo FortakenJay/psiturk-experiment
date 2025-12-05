@@ -142,7 +142,7 @@ var questions = [
     // EASY DERIVATIVES
     {
         id: 'q1', 
-        question: 'What is the derivative of x^3? (Format: 3x^2)', 
+        question: 'What is the derivative of x^3? (Format: x^n)', 
         answer: '3x^2', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/PowerRule.aspx'
@@ -156,14 +156,14 @@ var questions = [
     },
     {
         id: 'q3', 
-        question: 'What is the derivative of cos(x)? (Format: -sin(x))', 
+        question: 'What is the derivative of cos(x)? (Format: Type the answer exactly without spcaes)', 
         answer: '-sin(x)', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffTrigFcns.aspx'
     },
     {
         id: 'q4', 
-        question: 'What is the derivative of e^x? (Format: e^x)', 
+        question: 'What is the derivative of e^x? (Format: x^n)', 
         answer: 'e^x', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffExpLogFcns.aspx'
@@ -172,21 +172,21 @@ var questions = [
     // EASY TO MEDIUM INTEGRALS
     {
         id: 'q5', 
-        question: 'What is the integral of 3x^2 dx? (Format: x^3, omit +C)', 
+        question: 'What is the integral of 3x^2 dx? (Format: x^n, omit +C)', 
         answer: 'x^3', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IndefiniteIntegrals.aspx'
     },
     {
         id: 'q6', 
-        question: 'What is the integral of sin(x) dx? (Format: -cos(x), omit +C)', 
+        question: 'What is the integral of sin(x) dx? (Format: Type the answer exactly without spaces, omit +C)', 
         answer: '-cos(x)', 
         difficulty: 'easy', 
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsOfTrig.aspx'
     },
     {
         id: 'q7',
-        question: 'What is the integral of 1/x dx? (Format: ln(x), omit +C)',
+        question: 'What is the integral of 1/x dx? (Format: Type the answer exactly without spaces, omit +C)',
         answer: 'ln(x)',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsWithExpFcns.aspx'
@@ -195,21 +195,21 @@ var questions = [
     // MEDIUM DERIVATIVES
     {
         id: 'q8',
-        question: 'What is the derivative of x^2*sin(x) using product rule? (Format: 2x*sin(x)+x^2*cos(x))',
+        question: 'What is the derivative of x^2*sin(x) using product rule? (Format: Type the answer exactly without spaces)',
         answer: '2x*sin(x)+x^2*cos(x)',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/ProductQuotientRule.aspx'
     },
     {
         id: 'q9',
-        question: 'What is the derivative of ln(x^2)? (Format: 2/x)',
+        question: 'What is the derivative of ln(x^2)? (Format: Type the answer exactly without spaces)',
         answer: '2/x',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffExpLogFcns.aspx'
     },
     {
         id: 'q10',
-        question: 'What is the derivative of tan(x)? (Format: sec(x)^2)',
+        question: 'What is the derivative of tan(x)? (Format: Type the answer exactly without spaces)',
         answer: 'sec(x)^2',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/DiffTrigFcns.aspx'
@@ -218,35 +218,35 @@ var questions = [
     // MEDIUM INTEGRALS
     {
         id: 'q11',
-        question: 'What is the integral of e^x dx? (Format: e^x, omit +C)',
+        question: 'What is the integral of e^x dx? (Format: x^n, omit +C)',
         answer: 'e^x',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsWithExpFcns.aspx'
     },
     {
         id: 'q12',
-        question: 'What is the integral of sec(x)^2 dx? (Format: tan(x), omit +C)',
+        question: 'What is the integral of sec(x)^2 dx? (Format: Type the answer exactly without spaces, omit +C)',
         answer: 'tan(x)',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IntegralsOfTrig.aspx'
     },
     {
         id: 'q13',
-        question: 'What is the derivative of sqrt(x)? (Format: 1/(2*sqrt(x)))',
+        question: 'What is the derivative of sqrt(x)? (Format: Type the answer as a fraction))',
         answer: '1/(2*sqrt(x))',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/PowerRule.aspx'
     },
     {
         id: 'q14',
-        question: 'What is the integral of x^3 dx? (Format: x^4/4, omit +C)',
+        question: 'What is the integral of x^3 dx? (Format: x^n/n, omit +C)',
         answer: 'x^4/4',
         difficulty: 'easy',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/IndefiniteIntegrals.aspx'
     },
     {
         id: 'q15',
-        question: 'What is the derivative of 1/x? (Format: -1/x^2)',
+        question: 'What is the derivative of 1/x? (Format: n/x^n)',
         answer: '-1/x^2',
         difficulty: 'medium',
         topic_link: 'https://tutorial.math.lamar.edu/Classes/CalcI/PowerRule.aspx'
