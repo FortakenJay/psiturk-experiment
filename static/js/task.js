@@ -111,7 +111,7 @@ const CONDITIONS = {
 
 // If mycondition is supplied as 0/1 or 'adaptive'/'static', normalize:
 function resolveCondition(raw) {
-    if (!raw || raw === null || raw === undefined) {
+    if (raw === null || raw === undefined) {
         // Use counterbalance for true 50/50 distribution
         // counterbalance is set by PsiTurk and alternates 0/1
         if (typeof mycounterbalance !== 'undefined' && mycounterbalance !== null) {
