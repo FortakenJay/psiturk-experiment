@@ -1,54 +1,44 @@
 <div id="container-instructions">
 
-	<h1>Welcome to the Robot Learning Assistant Study</h1>
+	<h1>Experiment Preview</h1>
 
 	<hr />
 
 	<div class="instructions well">
-
-	    <h3>📚 What is This Study About?</h3>
-	    <p>
-		    This study investigates how different types of <strong>AI-powered robot tutors</strong> affect student learning and engagement. You will work with a robot that helps you solve simple math problems and provides feedback.
-	    </p>
 	    
-	    <p style="background-color: #f0f8ff; padding: 15px; border-left: 4px solid #0066cc; margin: 20px 0;">
-	    	<strong>🤖 About Your Robot Tutor:</strong><br>
-	    	You will be assigned to work with ONE of two different robot teaching styles:
-	    	<ul style="margin-top: 10px;">
-	    		<li><strong>Adaptive Robot:</strong> Provides personalized feedback, encouragement, and offers help resources when you're struggling</li>
-	    		<li><strong>Standard Robot:</strong> Provides simple, straightforward feedback without extra support</li>
-	    	</ul>
-	    	<em>Note: You won't know which type you have - just interact naturally with your robot!</em>
-	    </p>
-	    
-	    <h3>🤖 Meet Your Robot Tutor</h3>
+	    <h3>📸 What the Experiment Looks Like</h3>
 	    <div style="text-align: center; margin: 20px 0;">
-	        <img src="/static/images/pnw.png" alt="Robot Assistant" style="max-width: 300px; border: 2px solid #ccc; border-radius: 8px; padding: 10px;">
-	        <p><em>Your AI Robot Tutor</em></p>
+	        <img src="/static/images/screenshot.png" alt="Experiment Screenshot" style="max-width: 100%; border: 2px solid #ccc; border-radius: 8px; padding: 10px; background-color: white;">
+	        <p><em>Preview of the quiz interface</em></p>
+	    </div>
+
+	    <h3>🤖 Your Robot Tutor</h3>
+	    <div style="text-align: center; margin: 20px 0;">
+	        <img id="robot-image-instructions" src="/static/images/adaptive.jpeg" alt="Robot Assistant" style="max-width: 450px; border: 2px solid #ccc; border-radius: 8px; padding: 10px;">
 	    </div>
 	    
-	    <h3>📝 What You'll Do</h3>
-	    <p>
-	    	<ul>
-	    		<li><strong>Answer 15 calculus questions</strong> (derivatives and integrals from Calc 1-2)</li>
-	    		<li><strong>You have 5 minutes</strong> to complete all questions - a timer will show at the top right</li>
-	    		<li>The robot will give you feedback after each answer</li>
-	    		<li>If the robot offers review materials, you can choose to view them or continue</li>
-	    		<li>After the quiz, you'll complete a brief survey about your experience</li>
-	    	</ul>
-        </p>
-
-        <h3>💡 Tips for Success</h3>
-        <p>
-        	<ul>
-        		<li>Focus on accuracy - take your time on each question</li>
-        		<li>Follow the format instructions carefully (e.g., "3x^2" not "3x2")</li>
-        		<li>For integrals, omit the "+C" constant of integration</li>
-        		<li>Pay attention to the robot's feedback</li>
-        		<li>Use review materials if offered and needed</li>
-        		<li>Answer the final survey honestly based on YOUR experience</li>
-        	</ul>
-        </p>
+	    <!-- Condition-specific explanation -->
+	    <div class="condition-specific-adaptive" style="display: none;">
+	        <h4 style="color: #1976D2;">Adaptive Robot Tutor</h4>
+	        <p>You've been assigned to work with an <strong>Adaptive Robot Tutor</strong>. This robot will:</p>
+	        <ul>
+	            <li>Provide personalized, encouraging feedback based on your performance</li>
+	            <li>Adjust its teaching style to support your learning needs</li>
+	            <li>Offer helpful resources and explanations when you need them</li>
+	            <li>Communicate in a friendly, supportive, and empathetic manner</li>
+	        </ul>
+	    </div>
+	    
+	    <div class="condition-specific-static" style="display: none;">
+	        <h4 style="color: #1976D2;">Static Robot Tutor</h4>
+	        <p>You've been assigned to work with a <strong>Static Robot Tutor</strong>. This robot will:</p>
+	        <ul>
+	            <li>Provide straightforward, factual feedback on your answers</li>
+	            <li>Tell you whether each answer is correct or incorrect</li>
+	            <li>Deliver information in a clear, efficient manner</li>
+	            <li>Always provide access to review materials</li>
+	        </ul>
+	    </div>
 
 	    <script type="text/javascript">
 	    //console.log(psiTurk.getInstructionIndicator())

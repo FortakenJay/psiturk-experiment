@@ -43,6 +43,70 @@ def my_custom_view():
         abort(404)
 
 # ----------------------------------------------
+# preview route - shows task overview before consent
+# ----------------------------------------------
+@custom_code.route('/preview')
+def preview():
+    """Show preview of experiment before consent form"""
+    current_app.logger.info("Reached /preview")
+    hitId = request.args.get('hitId', '')
+    assignmentId = request.args.get('assignmentId', '')
+    workerId = request.args.get('workerId', '')
+    try:
+        return render_template('preview.html', hitid=hitId, assignmentid=assignmentId, workerid=workerId)
+    except TemplateNotFound:
+        abort(404)
+
+# ----------------------------------------------
+# intro route - shows experiment intro with screenshot and robot explanation
+# ----------------------------------------------
+@custom_code.route('/intro')
+def intro():
+    """Show intro page with screenshot and condition-specific robot explanation before consent"""
+    current_app.logger.info("Reached /intro")
+    hitId = request.args.get('hitId', '')
+    assignmentId = request.args.get('assignmentId', '')
+    workerId = request.args.get('workerId', '')
+    mode = request.args.get('mode', 'debug')  # Get mode parameter, default to 'debug'
+    
+    # Assign participant to condition
+    # This happens before consent, so we check if they already exist
+    current_app.logger.info("Accessing /intro route")
+    
+    # Check if assignment is not available (preview mode)
+    if not assignmentId or assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE":
+        # In preview mode, randomly assign for demonstration
+        import random
+        condition = random.randint(0, 1)
+    else:
+        # Check if participant already exists
+        uniqueId = f"{workerId}:{assignmentId}"
+        participant = Participant.query.filter(Participant.uniqueid == uniqueId).first()
+        
+        if participant:
+            # Use existing condition
+            condition = participant.cond
+        else:
+            # Assign new condition (simple alternating assignment)
+            # Count existing participants to alternate
+            count = Participant.query.count()
+            condition = count % 2
+    
+    # Determine which robot image to show
+    robot_image = 'adaptive.jpeg' if condition == 0 else 'static.jpeg'
+    
+    try:
+        return render_template('intro.html', 
+                             hitid=hitId, 
+                             assignmentid=assignmentId, 
+                             workerid=workerId,
+                             mode=mode,
+                             condition=condition,
+                             robot_image=robot_image)
+    except TemplateNotFound:
+        abort(404)
+
+# ----------------------------------------------
 # example using HTTP authentication
 # ----------------------------------------------
 #@custom_code.route('/my_password_protected_route')

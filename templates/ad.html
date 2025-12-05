@@ -41,15 +41,19 @@
 								payment is, the time, etc...
 
 							-->
-							{% if assignmentid == "ASSIGNMENT_ID_NOT_AVAILABLE" %}
+						    {% if assignmentid == "ASSIGNMENT_ID_NOT_AVAILABLE" %}
 
-							    <h1>Call for participants</h1>
-							    <p>
-									The XXX Lab at XXXXX University is looking for online participants
-									for a brief psychology experiment. The only requirements
-									are that you are at least 18 years old and are a fluent English
-									speaker.  The task will take XXXXX minutes and will pay XXXXX.
-							    </p>
+						    <h1>Call for participants</h1>
+						    <p>
+								The Psychology Lab at Purdue University Northwest is looking for online participants
+								for a brief educational psychology experiment. 
+								The only requirements are that you are at least 18 years old and are a fluent English
+								speaker. The task will take approximately 10-15 minutes and will pay $2.00.
+						    </p>
+						    <p>
+						    	<strong>What you'll do:</strong> You will complete 15 math questions with assistance 
+						    	from an AI robot tutor. You will have 5 minutes to complete the quiz.
+						    </p>
 							    <div class="alert alert-danger">
 									<strong>This task can only be completed once.</strong>
 									If you have already completed this task before the system will not
@@ -78,12 +82,17 @@
 								-->
 							    <h1>Thank you for accepting this HIT!</h1>
 							    <p>
-							    	By clicking the following URL link, you will be taken to the experiment,
+							    	By clicking the following button, you will be taken to the experiment,
 							        including complete instructions and an informed consent agreement.
+							    </p>
+							    <p>
+							    	<strong>Overview:</strong> In this study, you will complete math questions 
+							    	and be assisted by a robot. After the quiz, you will complete a brief 
+							    	questionnaire about your experience.
 							    </p>
 							    <script type="text/javascript">
 									function openwindow() {
-							    		popup = window.open('{{ server_location }}/consent?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}','Popup','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width='+1024+',height='+768+'');
+							    		popup = window.open('{{ server_location }}/intro?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}','Popup','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width='+1024+',height='+768+'');
 							  		}
 							    </script>
 							    <div class="alert alert-warning">
