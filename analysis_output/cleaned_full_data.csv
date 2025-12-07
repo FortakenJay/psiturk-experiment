@@ -1,0 +1,5 @@
+participant_id,correct_count,total_questions,accuracy,mean_rt,condition,age,gender,psiturk_exp,robot_exp,engagement_q1,engagement_q2,usability_q1,usability_q2,adaptiveness_q1,adaptiveness_q2,satisfaction_overall,engagement_score,usability_score,adaptiveness_score
+debugT6dc3:debuggddIp,3,6,0.5,4285.333333333333,adaptive,23,Female,Yes,Yes,3.0,3.0,2.0,3.0,3.0,3.0,3.0,3.0,2.5,3.0
+debugXUKYHK:debug169NVP,14,15,0.9333333333333333,7222.533333333334,static,80,Male,Yes,Yes,2.0,2.0,5.0,4.0,4.0,3.0,3.0,2.0,4.5,3.5
+debuga9QYb:debugoVTad,7,13,0.5384615384615384,5059.846153846154,adaptive,20,Male,Yes,No,4.0,4.0,4.0,4.0,3.0,3.0,2.0,4.0,4.0,3.0
+debugiFEuP:debughY8Dn,0,15,0.0,4019.4,static,18,Female,Yes,Yes,5.0,3.0,3.0,4.0,4.0,4.0,3.0,4.0,3.5,4.0

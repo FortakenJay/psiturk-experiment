@@ -1,0 +1,44 @@
+============================================================
+PSITURK EXPERIMENT ANALYSIS SUMMARY REPORT
+Robot Tutor Adaptiveness Study
+============================================================
+
+RESEARCH QUESTION:
+How does the adaptiveness of a robot tutor's feedback affect
+learner engagement, trust, and performance during an educational task?
+
+DEMOGRAPHICS:
+  Age: M = 45.08, SD = 30.84
+  Gender Distribution:
+    - Male: 8
+    - Female: 4
+
+HYPOTHESIS TESTING RESULTS:
+------------------------------------------------------------
+H1_PERFORMANCE:
+  t-statistic: 0.113
+  p-value: 0.9207
+  Adaptive M: 0.519
+  Static M: 0.467
+  Status: ✗ NOT SUPPORTED
+
+H2_ENGAGEMENT:
+  t-statistic: 0.447
+  p-value: 0.6985
+  Adaptive M: 3.500
+  Static M: 3.000
+  Status: ✗ NOT SUPPORTED
+
+H3_TRUST:
+  t-statistic: -3.000
+  p-value: 0.0955
+  Adaptive M: 3.000
+  Static M: 3.750
+  Status: ✗ NOT SUPPORTED
+
+H4_SATISFACTION:
+  t-statistic: -1.000
+  p-value: 0.4226
+  Adaptive M: 2.500
+  Static M: 3.000
+  Status: ✗ NOT SUPPORTED
