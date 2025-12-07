@@ -107,6 +107,45 @@ def intro():
         abort(404)
 
 # ----------------------------------------------
+# instructions route - shows robot and study instructions after consent
+# ----------------------------------------------
+@custom_code.route('/instructions')
+def instructions():
+    """Show instructions page with robot after consent"""
+    current_app.logger.info("Reached /instructions")
+    hitId = request.args.get('hitId', '')
+    assignmentId = request.args.get('assignmentId', '')
+    workerId = request.args.get('workerId', '')
+    mode = request.args.get('mode', 'debug')
+    
+    # Assign participant to condition
+    if not assignmentId or assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE":
+        import random
+        condition = random.randint(0, 1)
+    else:
+        uniqueId = f"{workerId}:{assignmentId}"
+        participant = Participant.query.filter(Participant.uniqueid == uniqueId).first()
+        
+        if participant:
+            condition = participant.cond
+        else:
+            count = Participant.query.count()
+            condition = count % 2
+    
+    robot_image = 'adaptive.jpeg' if condition == 0 else 'static.jpeg'
+    
+    try:
+        return render_template('instructions.html', 
+                             hitid=hitId, 
+                             assignmentid=assignmentId, 
+                             workerid=workerId,
+                             mode=mode,
+                             condition=condition,
+                             robot_image=robot_image)
+    except TemplateNotFound:
+        abort(404)
+
+# ----------------------------------------------
 # example using HTTP authentication
 # ----------------------------------------------
 #@custom_code.route('/my_password_protected_route')

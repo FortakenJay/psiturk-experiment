@@ -1,113 +1,184 @@
 <div id="container-questionnaire">
     <h2>📝 Post-Experiment Survey</h2>
-    <p style="font-size: 16px; margin-bottom: 30px;">Please answer the following questions about your experience with the robot tutor. All questions are required.</p>
+    <p style="font-size: 16px; margin-bottom: 15px;">Please answer the following questions about your experience with the robot tutor during the quiz.</p>
+    <p style="font-size: 14px; margin-bottom: 30px; color: #555;"><em>Rate each question on a scale from 1 to 10, where <strong>1 = strongly disagree/not at all</strong> and <strong>10 = strongly agree/very much</strong>.</em></p>
     <hr />
 
-    <div class="well" style="max-width: 900px; margin: 20px auto; padding: 30px; background-color: #ffffff; border: 2px solid #ddd;">
+    <style>
+        .rating-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .rating-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .rating-btn:hover {
+            border-color: #007bff;
+            background-color: #f0f8ff;
+        }
+        .rating-btn.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+    </style>
+
+    <div class="well" style="max-width: 1000px; margin: 20px auto; padding: 30px; background-color: #ffffff; border: 2px solid #ddd;">
         
-        <h4 style="color: #007bff; margin-bottom: 20px;">Engagement</h4>
+        <h4 style="color: #007bff; margin-bottom: 20px;">Robot Assistance & Helpfulness</h4>
         
-        <!-- Engagement Questions -->
         <div class="form-group" style="margin-bottom: 25px;">
-            <label for="engagement_q1" style="font-size: 16px;"><strong>1. I felt interested while interacting with the robot.</strong></label>
-            <select id="engagement_q1" class="form-control" required style="font-size: 15px; padding: 10px;">
-                <option value="">-- Please select an option --</option>
-                <option value="1">1 - Strongly disagree</option>
-                <option value="2">2 - Disagree</option>
-                <option value="3">3 - Neutral</option>
-                <option value="4">4 - Agree</option>
-                <option value="5">5 - Strongly agree</option>
-            </select>
+            <label style="font-size: 16px;"><strong>1. The robot was helpful during the quiz.</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q1" data-value="10">10</button>
+                </div>
+            </div>
+            <input type="hidden" id="engagement_q1" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>2. The robot's feedback improved my performance on the quiz.</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="engagement_q2" data-value="10">10</button>
+                </div>
+            </div>
+            <input type="hidden" id="engagement_q2" value="">
         </div>
 
         <div class="form-group" style="margin-bottom: 30px;">
-            <label for="engagement_q2" style="font-size: 16px;"><strong>2. I was motivated to continue the quiz.</strong></label>
-            <select id="engagement_q2" class="form-control" required style="font-size: 15px; padding: 10px;">
-                <option value="">-- Please select an option --</option>
-                <option value="1">1 - Strongly disagree</option>
-                <option value="2">2 - Disagree</option>
-                <option value="3">3 - Neutral</option>
-                <option value="4">4 - Agree</option>
-                <option value="5">5 - Strongly agree</option>
-            </select>
+            <label style="font-size: 16px;"><strong>3. The robot provided clear and easy-to-understand feedback.</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="usability_q1" data-value="10">10</button>
+                </div>
+            </div>
+            <input type="hidden" id="usability_q1" value="">
         </div>
 
         <hr style="margin: 30px 0;">
-        <h4 style="color: #007bff; margin-bottom: 20px;">Usability</h4>
+        <h4 style="color: #007bff; margin-bottom: 20px;">Engagement & Motivation</h4>
 
-        <!-- Usability Questions -->
         <div class="form-group" style="margin-bottom: 25px;">
-            <label for="usability_q1" style="font-size: 16px;"><strong>3. The robot's interface was easy to use.</strong></label>
-            <select id="usability_q1" class="form-control" required style="font-size: 15px; padding: 10px;">
-                <option value="">-- Please select an option --</option>
-                <option value="1">1 - Strongly disagree</option>
-                <option value="2">2 - Disagree</option>
-                <option value="3">3 - Neutral</option>
-                <option value="4">4 - Agree</option>
-                <option value="5">5 - Strongly agree</option>
-            </select>
+            <label style="font-size: 16px;"><strong>4. I felt motivated to do well on the quiz because of the robot's assistance.</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="usability_q2" data-value="10">10</button>
+                </div>
+            </div>
+            <input type="hidden" id="usability_q2" value="">
         </div>
 
         <div class="form-group" style="margin-bottom: 30px;">
-            <label for="usability_q2" style="font-size: 16px;"><strong>4. The robot's feedback was helpful.</strong></label>
-            <select id="usability_q2" class="form-control" required style="font-size: 15px; padding: 10px;">
-                <option value="">-- Please select an option --</option>
-                <option value="1">1 - Strongly disagree</option>
-                <option value="2">2 - Disagree</option>
-                <option value="3">3 - Neutral</option>
-                <option value="4">4 - Agree</option>
-                <option value="5">5 - Strongly agree</option>
-            </select>
+            <label style="font-size: 16px;"><strong>5. The robot kept me engaged during the quiz.</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q1" data-value="10">10</button>
+                </div>
+            </div>
+            <input type="hidden" id="adaptiveness_q1" value="">
         </div>
 
         <hr style="margin: 30px 0;">
-        <h4 style="color: #007bff; margin-bottom: 20px;">Robot Adaptiveness</h4>
+        <h4 style="color: #007bff; margin-bottom: 20px;">Trust & Reliability</h4>
 
-        <!-- Adaptiveness Questions -->
         <div class="form-group" style="margin-bottom: 25px;">
-            <label for="adaptiveness_q1" style="font-size: 16px;"><strong>5. The robot responded well to my needs.</strong></label>
-            <select id="adaptiveness_q1" class="form-control" required style="font-size: 15px; padding: 10px;">
-                <option value="">-- Please select an option --</option>
-                <option value="1">1 - Strongly disagree</option>
-                <option value="2">2 - Disagree</option>
-                <option value="3">3 - Neutral</option>
-                <option value="4">4 - Agree</option>
-                <option value="5">5 - Strongly agree</option>
-            </select>
+            <label style="font-size: 16px;"><strong>6. I trusted the robot's feedback.</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="adaptiveness_q2" data-value="10">10</button>
+                </div>
+            </div>
+            <input type="hidden" id="adaptiveness_q2" value="">
         </div>
 
         <div class="form-group" style="margin-bottom: 30px;">
-            <label for="adaptiveness_q2" style="font-size: 16px;"><strong>6. The robot adjusted its teaching to help me learn.</strong></label>
-            <select id="adaptiveness_q2" class="form-control" required style="font-size: 15px; padding: 10px;">
-                <option value="">-- Please select an option --</option>
-                <option value="1">1 - Strongly disagree</option>
-                <option value="2">2 - Disagree</option>
-                <option value="3">3 - Neutral</option>
-                <option value="4">4 - Agree</option>
-                <option value="5">5 - Strongly agree</option>
-            </select>
-        </div>
-
-        <hr style="margin: 30px 0;">
-        <h4 style="color: #007bff; margin-bottom: 20px;">Overall Satisfaction</h4>
-
-        <!-- Overall Satisfaction -->
-        <div class="form-group" style="margin-bottom: 30px;">
-            <label for="satisfaction_overall" style="font-size: 16px;"><strong>7. Overall, how satisfied were you with the robot tutor?</strong></label>
-            <select id="satisfaction_overall" class="form-control" required style="font-size: 15px; padding: 10px;">
-                <option value="">-- Please select an option --</option>
-                <option value="1">1 - Very dissatisfied</option>
-                <option value="2">2 - Dissatisfied</option>
-                <option value="3">3 - Neutral</option>
-                <option value="4">4 - Satisfied</option>
-                <option value="5">5 - Very satisfied</option>
-            </select>
+            <label style="font-size: 16px;"><strong>7. The robot seemed knowledgeable about the quiz material.</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="10">10</button>
+                </div>
+            </div>
+            <input type="hidden" id="satisfaction_overall" value="">
         </div>
 
         <hr style="margin: 30px 0;">
         <h4 style="color: #007bff; margin-bottom: 20px;">Additional Feedback</h4>
 
-        <!-- Comments -->
         <div class="form-group" style="margin-bottom: 30px;">
             <label for="general_comments" style="font-size: 16px;"><strong>8. Do you have any other comments or feedback about the experiment?</strong> <em>(Optional)</em></label>
             <textarea id="general_comments" class="form-control" rows="5" placeholder="Enter your comments here..." style="font-size: 15px; padding: 10px;"></textarea>
@@ -123,3 +194,22 @@
         </div>
     </div>
 </div>
+
+<script>
+// Handle rating button clicks
+$(document).ready(function() {
+    $('.rating-btn').on('click', function() {
+        var questionId = $(this).data('question');
+        var value = $(this).data('value');
+        
+        // Remove selected class from all buttons for this question
+        $('[data-question="' + questionId + '"]').removeClass('selected');
+        
+        // Add selected class to clicked button
+        $(this).addClass('selected');
+        
+        // Set the hidden input value
+        $('#' + questionId).val(value);
+    });
+});
+</script>

@@ -1,0 +1,387 @@
+<div id="container-questionnaire">
+    <h2>📝 Post-Experiment Survey</h2>
+    <p style="font-size: 16px; margin-bottom: 15px;">Please answer the following questions about your experience with the robot tutor during the quiz.</p>
+    <p style="font-size: 14px; margin-bottom: 30px; color: #555;"><em>Rate each question on a scale from 1 to 10, where <strong>1 = strongly disagree/not at all</strong> and <strong>10 = strongly agree/very much</strong>.</em></p>
+    <hr />
+
+    <style>
+        .rating-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .rating-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .rating-btn:hover {
+            border-color: #007bff;
+            background-color: #f0f8ff;
+        }
+        .rating-btn.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+    </style>
+
+    <div class="well" style="max-width: 1000px; margin: 20px auto; padding: 30px; background-color: #ffffff; border: 2px solid #ddd;">
+        
+        <h4 style="color: #007bff; margin-bottom: 20px;">Robot Assistance & Helpfulness</h4>
+        
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>1. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Fake</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q1" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Natural</span>
+            </div>
+            <input type="hidden" id="anthro_q1" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>2. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Machinelike</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q2" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Humanlike</span>
+            </div>
+            <input type="hidden" id="anthro_q2" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label style="font-size: 16px;"><strong>3. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Artificial</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="anthro_q3" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Lifelike</span>
+            </div>
+            <input type="hidden" id="anthro_q3" value="">
+        </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Animacy</h4>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>4. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Dead</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q1" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Alive</span>
+            </div>
+            <input type="hidden" id="animacy_q1" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label style="font-size: 16px;"><strong>5. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Mechanical</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="animacy_q2" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Organic</span>
+            </div>
+            <input type="hidden" id="animacy_q2" value="">
+        </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Likeability</h4>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>6. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Dislike</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q1" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Like</span>
+            </div>
+            <input type="hidden" id="likeability_q1" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>7. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Unfriendly</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q2" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Friendly</span>
+            </div>
+            <input type="hidden" id="likeability_q2" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label style="font-size: 16px;"><strong>8. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Unkind</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="likeability_q3" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Kind</span>
+            </div>
+            <input type="hidden" id="likeability_q3" value="">
+        </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Perceived Intelligence</h4>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>9. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Incompetent</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q1" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Competent</span>
+            </div>
+            <input type="hidden" id="intelligence_q1" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>10. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Ignorant</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q2" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Knowledgeable</span>
+            </div>
+            <input type="hidden" id="intelligence_q2" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label style="font-size: 16px;"><strong>11. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Irresponsible</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="intelligence_q3" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Responsible</span>
+            </div>
+            <input type="hidden" id="intelligence_q3" value="">
+        </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Perceived Safety</h4>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-size: 16px;"><strong>12. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Anxious</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="safety_q1" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Relaxed</span>
+            </div>
+            <input type="hidden" id="safety_q1" value="">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label style="font-size: 16px;"><strong>13. The robot appeared:</strong></label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <span style="font-size: 14px; min-width: 100px;">Agitated</span>
+                <div class="rating-buttons">
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="safety_q2" data-value="10">10</button>
+                </div>
+                <span style="font-size: 14px; min-width: 100px; text-align: right;">Calm</span>
+            </div>
+            <input type="hidden" id="safety_q2" value="">
+        </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Overall Satisfaction</h4>
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label style="font-size: 16px;"><strong>14. Overall, how satisfied were you with the robot tutor?</strong></label>
+            <div style="text-align: center; margin-top: 10px;">
+                <div class="rating-buttons" style="justify-content: center;">
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="1">1</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="2">2</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="3">3</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="4">4</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="5">5</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="6">6</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="7">7</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="8">8</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="9">9</button>
+                    <button type="button" class="rating-btn" data-question="satisfaction_overall" data-value="10">10</button>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                    <span style="font-size: 13px; color: #666;">Very dissatisfied</span>
+                    <span style="font-size: 13px; color: #666;">Very satisfied</span>
+                </div>
+            </div>
+            <input type="hidden" id="satisfaction_overall" value="">
+        </div>
+
+        <hr style="margin: 30px 0;">
+        <h4 style="color: #007bff; margin-bottom: 20px;">Additional Feedback</h4>
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="general_comments" style="font-size: 16px;"><strong>15. Do you have any other comments or feedback about the experiment?</strong> <em>(Optional)</em></label>
+            <textarea id="general_comments" class="form-control" rows="5" placeholder="Enter your comments here..." style="font-size: 15px; padding: 10px;"></textarea>
+        </div>
+
+        <hr style="margin: 30px 0;">
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p id="error-message" style="color: red; font-weight: bold; display: none; margin-bottom: 15px;">⚠️ Please answer all required questions before submitting.</p>
+            <button type="button" id="next" class="btn btn-success btn-lg" style="font-size: 20px; padding: 15px 40px;">
+                <span class="glyphicon glyphicon-ok"></span> Submit Survey and Complete Study
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Handle rating button clicks
+$(document).ready(function() {
+    $('.rating-btn').on('click', function() {
+        var questionId = $(this).data('question');
+        var value = $(this).data('value');
+        
+        // Remove selected class from all buttons for this question
+        $('[data-question="' + questionId + '"]').removeClass('selected');
+        
+        // Add selected class to clicked button
+        $(this).addClass('selected');
+        
+        // Set the hidden input value
+        $('#' + questionId).val(value);
+    });
+});
+</script>

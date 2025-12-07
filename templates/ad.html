@@ -29,7 +29,7 @@
 		<div id="container-not-an-ad" class="media">
 			<div class="media-left pull-left" href="#">
 						<!-- REPLACE THE LOGO HERE WITH YOUR  UNIVERSITY, LAB, or COMPANY -->
-						<img id="adlogo" src="{{ server_location }}/static/images/pnw.png" alt="Lab Logo" />
+						<img id="adlogo" src="{{ server_location }}/static/images/pnw.png" alt="PNW Logo" />
 			</div>
 			<div class="media-body">
 
@@ -80,19 +80,18 @@
 									openwindow() function below if you want you experiment
 									to work.
 								-->
-							    <h1>Thank you for accepting this HIT!</h1>
+							    <h1>Welcome to the Experiment!</h1>
 							    <p>
 							    	By clicking the following button, you will be taken to the experiment,
 							        including complete instructions and an informed consent agreement.
 							    </p>
 							    <p>
-							    	<strong>Overview:</strong> In this study, you will complete math questions 
-							    	and be assisted by a robot. After the quiz, you will complete a brief 
-							    	questionnaire about your experience.
+							    	In this study, you will complete a task and may receive assistance 
+							    	during the experiment. Full details will be provided after you begin.
 							    </p>
 							    <script type="text/javascript">
 									function openwindow() {
-							    		popup = window.open('{{ server_location }}/intro?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}','Popup','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width='+1024+',height='+768+'');
+							    		popup = window.open('{{ server_location }}/consent?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}','Popup','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width='+1024+',height='+768+'');
 							  		}
 							    </script>
 							    <div class="alert alert-warning">

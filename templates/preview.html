@@ -1,0 +1,62 @@
+{% extends 'layouts/layout.html' %}
+
+{% block head %}
+    {{ super() }}
+    <title>Study Preview - Robot Learning Assistant</title>
+{% endblock %}
+
+{% block body %}
+<div id="container-preview" style="max-width: 900px; margin: 40px auto; padding: 30px; background: white;">
+
+    <h1 style="text-align: center; color: #333; margin-bottom: 30px;">Welcome to the Robot Learning Assistant Study</h1>
+
+    <hr />
+
+    <div class="well" style="background-color: #f9f9f9; padding: 25px;">
+
+        <h3>🤖 Meet Your Robot Tutor</h3>
+        <div style="text-align: center; margin: 20px 0;">
+            <img src="/static/images/pnw.png" alt="Robot Assistant" style="max-width: 450px; border: 2px solid #ccc; border-radius: 8px; padding: 10px;">
+            <p><em>Your AI Robot Tutor</em></p>
+        </div>
+        
+        <h3>📝 What You'll Do</h3>
+        <ul style="font-size: 16px; line-height: 1.8;">
+            <li><strong>Answer 15 algebra questions</strong> (solving equations, simplifying expressions, factoring)</li>
+            <li><strong>You have 5 minutes</strong> to complete all questions - a timer will show at the top</li>
+            <li>The robot will give you feedback after each answer</li>
+            <li>You can access a <strong>📚 Reference Guide</strong> with algebra rules anytime</li>
+            <li>After the quiz, you'll complete a brief survey about your experience</li>
+        </ul>
+
+        <h3>💡 Tips for Success</h3>
+        <ul style="font-size: 16px; line-height: 1.8;">
+            <li>Focus on accuracy - take your time on each question</li>
+            <li>Follow the format instructions carefully (e.g., "5x" not "5 x")</li>
+            <li>Use the reference guide if you need to review a concept</li>
+            <li>Pay attention to the robot's feedback</li>
+            <li>Answer the final survey honestly based on YOUR experience</li>
+        </ul>
+
+        <h3>📸 What the Experiment Looks Like</h3>
+        <div style="text-align: center; margin: 20px 0;">
+            <img src="/static/images/screenshot.png" alt="Experiment Screenshot" style="max-width: 100%; border: 2px solid #ccc; border-radius: 8px; padding: 10px; background-color: white;">
+            <p><em>Preview of the quiz interface</em></p>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div style="text-align: center; margin-top: 30px;">
+        <p style="font-size: 18px; margin-bottom: 20px;">
+            <strong>Ready to begin?</strong> Click below to review the consent form and start the study.
+        </p>
+        <button type="button" class="btn btn-success btn-lg" style="padding: 15px 40px; font-size: 20px;" 
+                onClick="window.location='/consent?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}'">
+            <span class="glyphicon glyphicon-ok-circle"></span> Continue to Consent Form
+        </button>
+    </div>
+
+</div>
+{% endblock %}
